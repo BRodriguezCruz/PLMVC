@@ -1,0 +1,43 @@
+﻿@{
+
+    @model ML.Automovil
+
+}
+
+
+<h1 class="text-center" style="font-family: 'Times New Roman'"> LISTA GENERAL DE AUTOMOVILES </h1>
+<br />
+<hr />
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID AUTO</th>
+                <th>MARCA</th>
+                <th>MODELO</th>
+                <th>GENERACION</th>
+                <th>FECHA LAMZAMIENTO</th>
+                <th>ID AGENCIA</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ML.Automovil item in Model.Autos)
+            {
+                <tr>
+                    <td>@item.IdAutomovil</td>
+                    <td>@item.Marca</td>
+                    <td>@item.Modelo</td>
+                    <td>@item.Generacion</td>
+                    <td>@item.FechaLanzamiento</td>
+                    <td>@item.Agencia.IdAgencia</td>
+                    <td> <a href="@Url.Action("Form","Automovil", new {idAuto = item.IdAutomovil})" class="btn btn-info"> EDITAR </a> </td>
+                    <td> <a href="@Url.Action("Delete", "Automovil", new { idAuto = item.IdAutomovil })" onclick=" return confirm('¿Seguro que desea eliminar el registro?');" type="button" class="btn btn-danger"> ELIMINAR </a> </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a href="@Url.Action("Form", "Automovil")" class="btn btn-success">Agregar Auto</a>
+</div>

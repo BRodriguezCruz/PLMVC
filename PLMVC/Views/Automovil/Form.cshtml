@@ -1,0 +1,50 @@
+﻿@{
+    @model ML.Automovil
+
+}
+<h1 class="text-center" style="font-family: 'Times New Roman'"> FORMULARIO PARA AGREGAR NUEVO AUTO</h1>
+<br />
+<hr />
+
+@using (Html.BeginForm("Form", "Automovil", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model.IdAutomovil) //almacena idAutomovil para el update
+
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Modelo)
+                @Html.TextBoxFor(model => model.Modelo, new { @class = "form-control"})
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Marca)
+                @Html.TextBoxFor(model => model.Marca, new { @class = "form-control"})
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Color)
+                @Html.TextBoxFor(model => model.Color, new { @class = "form-control"})
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Generacion)
+                @Html.TextBoxFor(model => model.Generacion, new { @class = "form-control"})
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.FechaLanzamiento)
+                @Html.TextBoxFor(model => model.FechaLanzamiento, new { @class = "form-control", type = "date"})
+            </div>
+            <div class="col-md-4">
+                @Html.LabelFor(model => model.Agencia)
+                @Html.DropDownListFor(model => model.Agencia.IdAgencia, new SelectList(Model.Agencia.Agencias, "IdAgencia", "Nombre"), "SLECCIONA OPCION", new { @class = "form-control"})
+            </div>
+
+        </div>
+  
+        <br />
+        <hr />
+    <button class="btn btn-success" type="submit">HECHO</button>
+    <a class="btn btn-secondary" href="@Url.Action("GetAll", "Automovil")">REGRESAR</a>
+
+}
